@@ -13,7 +13,7 @@ PeerOrgs:
   Domain: org1.example.com
   EnableNodeOUs: true
   Template:
-    Count: 2
+    Count: 6
     SANS:
     - localhost
     - 127.0.0.1

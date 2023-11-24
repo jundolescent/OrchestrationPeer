@@ -23,6 +23,15 @@ os.system('docker exec -e CORE_PEER_ADDRESS=peer1.org1.example.com:8101 \
           cli peer channel join \
           -b channel1.block')
 
+
+if n_peer > 2:
+    for peer in range(2, n_peer):
+        peer_port = 8000 + 1 * 100 + peer
+        os.system('docker exec -e CORE_PEER_ADDRESS=peer{}.org1.example.com:{} \
+          -e CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/peerOrganizations/org1.example.com/peers/peer{}.org1.example.com/tls/ca.crt \
+          cli peer channel join \
+          -b channel1.block'.format(peer, peer_port, peer))
+
 for org in range(2,n_org + 1):
     for peer in range(0,n_peer):
         peer_port = 8000 + org * 100 ## 8100, 8200. 8300

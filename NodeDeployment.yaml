@@ -12,11 +12,11 @@ Deployment:
       ###########################
       ## the number of peer of each organization
       ###########################
-      peer: 2
+      peer: 6
       ###########################
       ## the number of server/instance
       ###########################      
-      server: 1
+      server: 3
       ###########################
       ## configuration of blockchain node
       ## orderer, orderer2, orderer3, orderer4 ...
@@ -28,8 +28,21 @@ Deployment:
               - 'peer0.org1'
               - 'peer1.org1'
               - 'orderer'
-
             ip: 10.0.0.1
+
+          - Host: 2
+            configuration:
+              - 'peer2.org1'
+              - 'peer3.org1'
+
+            ip: 10.0.0.2
+
+          - Host: 3
+            configuration:
+              - 'peer4.org1'
+              - 'peer5.org1'
+
+            ip: 10.0.0.3
       ###########################
       ## type of chaincode 
       ###########################  

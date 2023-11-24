@@ -29,7 +29,9 @@ for i in range(0, n_server):
         extra_hosts.append('{}.example.com:{}'.format(j,deployment['Deployment']['deployment'][i]['ip']))
         total.append('{}.example.com:{}'.format(j,deployment['Deployment']['deployment'][i]['ip']))
     total_hosts.append(extra_hosts)
-#total_hosts = list(set(temp) - set(extra_hosts))
+
+print(server_list)
+
 result = []
 for j in total_hosts:
     j = list(set(total) - set(j))
@@ -232,14 +234,37 @@ for o in range(1,n_org +1):
 
         #select server
         for index, server in enumerate(server_list):
-            for node in server:
+            orderer = False
+            second = False
+            for no in server:
+                if 'orderer' in no:
+                    orderer = True
+            for index2, node in enumerate(server):
+                if 'orderer' in node:
+                    continue
+
                 if peer_name.replace('.example.com','') == node:
                     with open('./docker/docker-compose-{}.yaml'.format(index)) as f:
                         service = yaml.load(f, Loader=yaml.FullLoader)
-                        service['services'][peer_name] = {'container_name':container_name,'image':image,'environment':environment,'working_dir':working_dir,\
-                                                'volumes':volumes,'command':command,\
-                                                'extra_hosts': extra_host, 'ports':ports,'networks':networks}
 
+                        if orderer == True:
+                            service['services'][peer_name] = {'container_name':container_name,'image':image,'environment':environment,'working_dir':working_dir,\
+                                                   'volumes':volumes,'command':command,\
+                                                   'extra_hosts': extra_host, 'ports':ports,'networks':networks}
+                            print('hi')
+                            
+                        elif orderer == False and index2 == 0:
+                            service['services'] = {peer_name : {'container_name':container_name,'image':image,'environment':environment,'working_dir':working_dir,\
+                                            'volumes':volumes,'command':command,\
+                                            'extra_hosts': extra_host, 'ports':ports,'networks':networks}}
+                            second = True
+                            print('hi2')
+
+                        else:
+                            service['services'][peer_name] = {'container_name':container_name,'image':image,'environment':environment,'working_dir':working_dir,\
+                                                   'volumes':volumes,'command':command,\
+                                                   'extra_hosts': extra_host, 'ports':ports,'networks':networks}
+                            print('hi3')
                     with open('./docker/docker-compose-{}.yaml'.format(index), 'w') as f:
                         yaml.dump(service,f,sort_keys=False)
 
