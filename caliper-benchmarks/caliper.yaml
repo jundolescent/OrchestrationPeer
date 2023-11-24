@@ -1,0 +1,6 @@
+caliper:
+  fabric:
+    gateway:
+      localhost: false
+      enabled: true
+      discovery: true
