@@ -9,19 +9,112 @@ test:
       rateControl:
           type: fixed-rate
           opts:
-            tps: 100
+            tps: 300
       workload:
         module: benchmarks/samples/fabric/fabcar/createCar.js
+    - label: Create a car with payload 1000.
+      # 5000 transactions should create around 1000 cars per worker but not guaranteed
+      # so need to set asset limits to less than 1000 for the other tests
+      txNumber: 1000
+      rateControl:
+          type: fixed-rate
+          opts:
+            tps: 300
+      workload:
+        module: benchmarks/samples/fabric/fabcar/createCar1000.js
+    - label: Create a car with payload 4000.
+      # 5000 transactions should create around 1000 cars per worker but not guaranteed
+      # so need to set asset limits to less than 1000 for the other tests
+      txNumber: 1000
+      rateControl:
+          type: fixed-rate
+          opts:
+            tps: 300
+      workload:
+        module: benchmarks/samples/fabric/fabcar/createCar4000.js
+    - label: Create a car with payload 7000.
+      # 5000 transactions should create around 1000 cars per worker but not guaranteed
+      # so need to set asset limits to less than 1000 for the other tests
+      txNumber: 1000
+      rateControl:
+          type: fixed-rate
+          opts:
+            tps: 300
+      workload:
+        module: benchmarks/samples/fabric/fabcar/createCar7000.js
+    - label: Create a car with payload 1000.
+      # 5000 transactions should create around 1000 cars per worker but not guaranteed
+      # so need to set asset limits to less than 1000 for the other tests
+      txNumber: 1000
+      rateControl:
+          type: fixed-rate
+          opts:
+            tps: 300
+      workload:
+        module: benchmarks/samples/fabric/fabcar/createCar10000.js
+    - label: Create a car with payload 10000.
+      # 5000 transactions should create around 1000 cars per worker but not guaranteed
+      # so need to set asset limits to less than 1000 for the other tests
+      txNumber: 1000
+      rateControl:
+          type: fixed-rate
+          opts:
+            tps: 300
+      workload:
+        module: benchmarks/samples/fabric/fabcar/createCar1000.js
+
+
     - label: Change car owner.
       txNumber: 1000
       rateControl:
           type: fixed-rate
           opts:
-            tps: 100
+            tps: 300
       workload:
         module: benchmarks/samples/fabric/fabcar/changeCarOwner.js
         arguments:
           assets: 500
+    - label: Change car owner with payload 1000.
+      txNumber: 1000
+      rateControl:
+          type: fixed-rate
+          opts:
+            tps: 300
+      workload:
+        module: benchmarks/samples/fabric/fabcar/changeCarOwner1000.js
+        arguments:
+          assets: 500
+    - label: Change car owner with payload 4000.
+      txNumber: 1000
+      rateControl:
+          type: fixed-rate
+          opts:
+            tps: 300
+      workload:
+        module: benchmarks/samples/fabric/fabcar/changeCarOwner4000.js
+        arguments:
+          assets: 500
+    - label: Change car owner with payload 7000.
+      txNumber: 1000
+      rateControl:
+          type: fixed-rate
+          opts:
+            tps: 300
+      workload:
+        module: benchmarks/samples/fabric/fabcar/changeCarOwner7000.js
+        arguments:
+          assets: 500
+    - label: Change car owner with payload 10000.
+      txNumber: 1000
+      rateControl:
+          type: fixed-rate
+          opts:
+            tps: 300
+      workload:
+        module: benchmarks/samples/fabric/fabcar/changeCarOwner10000.js
+        arguments:
+          assets: 500
+
     - label: Query all cars.
       txDuration: 10
       rateControl:
@@ -34,13 +127,4 @@ test:
           assets: 500
           startKey: '1'
           endKey: '50'
-    - label: Query a car.
-      txDuration: 10
-      rateControl:
-          type: fixed-rate
-          opts:
-            tps: 500
-      workload:
-        module: benchmarks/samples/fabric/fabcar/queryCar.js
-        arguments:
-          assets: 500
+

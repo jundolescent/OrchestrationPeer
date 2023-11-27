@@ -16,15 +16,12 @@
 
 const { WorkloadModuleBase } = require('@hyperledger/caliper-core');
 
-const colors = ['blue', 'red', 'green', 'yellow', 'black', 'purple', 'white', 'violet', 'indigo', 'brown'];
-const makes = ['Toyota', 'Ford', 'Hyundai', 'Volkswagen', 'Tesla', 'Peugeot', 'Chery', 'Fiat', 'Tata', 'Holden'];
-const models = ['Prius', 'Mustang', 'Tucson', 'Passat', 'S', '205', 'S22L', 'Punto', 'Nano', 'Barina'];
-const owners = ['Tomoko', 'Brad', 'Jin Soo', 'Max', 'Adrianna', 'Michel', 'Aarav', 'Pari', 'Valeria', 'Shotaro'];
-//const owners = ['0'.repeat(10000), '1'.repeat(10000)];
+const owners = ['0'.repeat(7000), '1'.repeat(7000)];
+
 /**
  * Workload module for the benchmark round.
  */
-class CreateCarWorkload extends WorkloadModuleBase {
+class ChangeCarOwnerWorkload extends WorkloadModuleBase {
     /**
      * Initializes the workload module instance.
      */
@@ -40,18 +37,19 @@ class CreateCarWorkload extends WorkloadModuleBase {
     async submitTransaction() {
         this.txIndex++;
         let carNumber = 'Client' + this.workerIndex + '_CAR' + this.txIndex.toString();
-        let carColor = colors[Math.floor(Math.random() * colors.length)];
-        let carMake = makes[Math.floor(Math.random() * makes.length)];
-        let carModel = models[Math.floor(Math.random() * models.length)];
-        let carOwner = owners[Math.floor(Math.random() * owners.length)];
+        let newCarOwner = owners[Math.floor(Math.random() * owners.length)];
 
         let args = {
             contractId: 'fabcar',
             contractVersion: 'v1',
-            contractFunction: 'createCar',
-            contractArguments: [carNumber, carMake, carModel, carColor, carOwner],
-            timeout: 30
+            contractFunction: 'changeCarOwner',
+            contractArguments: [carNumber, newCarOwner],
+            timeout: 60
         };
+
+        if (this.txIndex === this.roundArguments.assets) {
+            this.txIndex = 0;
+        }
 
         await this.sutAdapter.sendRequests(args);
     }
@@ -62,7 +60,7 @@ class CreateCarWorkload extends WorkloadModuleBase {
  * @return {WorkloadModuleInterface}
  */
 function createWorkloadModule() {
-    return new CreateCarWorkload();
+    return new ChangeCarOwnerWorkload();
 }
 
 module.exports.createWorkloadModule = createWorkloadModule;
