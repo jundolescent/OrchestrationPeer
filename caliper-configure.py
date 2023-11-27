@@ -56,6 +56,11 @@ if os.path.isfile('caliper.yaml'):
 
 # should change peer & IP 
 
+
+# # of organizaiton = 1
+if n_org == 1:
+    peer_name = ''
+
 for o in range(1, n_org + 1):
     peer_name = ''
     peer_port = 0

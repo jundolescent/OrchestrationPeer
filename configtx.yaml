@@ -387,4 +387,3 @@ Profiles:
                 - *Org3
             Capabilities:
                 <<: *ApplicationCapabilities
-
