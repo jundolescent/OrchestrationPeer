@@ -11,3 +11,4 @@ rm -rf ./organizations/peerOrganizations
 rm -rf ./organizations/ordererOrganizations
 rm -rf ./docker/*
 rm -rf ./configtx/configtx.yaml
+rm -rf ./ccp-template2.json

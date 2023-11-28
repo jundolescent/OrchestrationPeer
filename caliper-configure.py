@@ -56,22 +56,23 @@ if os.path.isfile('caliper.yaml'):
 
 # should change peer & IP 
 
+os.system('python3 connection-profile.py')
 
 # # of organizaiton = 1
-if n_org == 1:
-    peer_name = ''
+# if n_org == 1:
+#     peer_name = ''
 
-for o in range(1, n_org + 1):
-    peer_name = ''
-    peer_port = 0
-    port_list = []
-    ca_port = 0
-    for p in range(0, n_peer):
-        peer_name = 'peer{}.org{}'.format(p, o)
-        peer_port = 8000 + o * 100 + p
-        port_list.append(peer_port)
-        ca_port = 10000 + o
-    os.system('./generateccp.sh {} {} {} {} {}'.format(server_ip[peer_name], o, port_list[0], ca_port, port_list[1]))
+# for o in range(1, n_org + 1):
+#     peer_name = ''
+#     peer_port = 0
+#     port_list = []
+#     ca_port = 0
+#     for p in range(0, n_peer):
+#         peer_name = 'peer{}.org{}'.format(p, o)
+#         peer_port = 8000 + o * 100 + p
+#         port_list.append(peer_port)
+#         ca_port = 10000 + o
+#     os.system('./generateccp.sh {} {} {} {} {}'.format(server_ip[peer_name], o, port_list[0], ca_port, port_list[1]))
 
 
 # #ip, PEER_PORT, peerpem,CAPEM, ca_port

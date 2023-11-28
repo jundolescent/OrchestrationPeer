@@ -25,7 +25,7 @@
     },
     "peers": {
         "peer0.org${ORG}.example.com": {
-            "url": "grpcs://${IP}:${P0PORT1}",
+            "url": "grpcs://${IP}:8100",
             "tlsCACerts": {
                 "pem": "${PEERPEM}"
             },
@@ -35,7 +35,7 @@
             }
         },
         "peer1.org${ORG}.example.com": {
-            "url": "grpcs://${IP}:${P0PORT2}",
+            "url": "grpcs://${IP}:8101",
             "tlsCACerts": {
                 "pem": "${PEERPEM}"
             },
@@ -47,7 +47,7 @@
     },
     "certificateAuthorities": {
         "ca.org${ORG}.example.com": {
-            "url": "https://localhost:${CAPORT}",
+            "url": "https://localhost:10001",
             "caName": "ca-org${ORG}",
             "tlsCACerts": {
                 "pem": ["${CAPEM}"]
