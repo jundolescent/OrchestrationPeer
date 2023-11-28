@@ -1,0 +1,24 @@
+Deployment:
+  orderer: 1
+  organization: 1
+  peer: 9
+  server: 2
+  deployment:
+  - Host: 1
+    configuration:
+    - orderer
+    - peer0.org1
+    - peer1.org1
+    - peer2.org1
+    - peer3.org1
+    - peer4.org1
+    - peer5.org1
+    - peer6.org1
+    - peer7.org1
+    ip: 10.0.0.1
+  - Host: 2
+    configuration:
+    - peer8.org1
+    ip: 10.0.0.2
+  chaincode: fabcar
+  bandwidth: 500

@@ -54,7 +54,7 @@ connection['peers']['peer1.org${ORG}.example.com']['url'] = "grpcs://{}:{}".form
 
 for peer in range(2, n_peer):
      connection['organizations']['Org${ORG}']['peers'].append('peer{}.org${{ORG}}.example.com'.format(peer))
-     peer_port = 8100 + peer - 1
+     peer_port = 8100 + peer 
      peer_ip = server_ip['peer{}.org1'.format(peer)]
      temp_peer = {"peer{}.org${{ORG}}.example.com".format(peer):{
                                              "url":"grpcs://{}:{}".format(peer_ip, peer_port),\

@@ -1,4 +1,4 @@
-
+###version 1.0
 
 Deployment:
       ###########################
@@ -12,11 +12,11 @@ Deployment:
       ###########################
       ## the number of peer of each organization
       ###########################
-      peer: 6
+      peer: 3
       ###########################
       ## the number of server/instance
       ###########################      
-      server: 3
+      server: 2
       ###########################
       ## configuration of blockchain node
       ## orderer, orderer2, orderer3, orderer4 ...
@@ -27,25 +27,15 @@ Deployment:
             configuration:
               - 'peer0.org1'
               - 'peer1.org1'
-              - 'peer2.org1'
               - 'orderer'
             ip: 10.0.0.1
-
           - Host: 2
             configuration:
-              - 'peer3.org1'
-
+              - 'peer2.org1'
             ip: 10.0.0.2
-
-          - Host: 3
-            configuration:
-              - 'peer4.org1'
-              - 'peer5.org1'
-
-            ip: 10.0.0.3
       ###########################
       ## type of chaincode 
       ###########################  
       chaincode: 'fabcar'
-
+      bandwidth: 100
 
