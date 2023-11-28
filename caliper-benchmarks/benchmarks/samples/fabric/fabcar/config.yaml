@@ -42,16 +42,6 @@ test:
             tps: 300
       workload:
         module: benchmarks/samples/fabric/fabcar/createCar7000.js
-    - label: Create a car with payload 1000.
-      # 5000 transactions should create around 1000 cars per worker but not guaranteed
-      # so need to set asset limits to less than 1000 for the other tests
-      txNumber: 1000
-      rateControl:
-          type: fixed-rate
-          opts:
-            tps: 300
-      workload:
-        module: benchmarks/samples/fabric/fabcar/createCar10000.js
     - label: Create a car with payload 10000.
       # 5000 transactions should create around 1000 cars per worker but not guaranteed
       # so need to set asset limits to less than 1000 for the other tests
@@ -61,7 +51,37 @@ test:
           opts:
             tps: 300
       workload:
-        module: benchmarks/samples/fabric/fabcar/createCar1000.js
+        module: benchmarks/samples/fabric/fabcar/createCar10000.js
+    - label: Create a car with payload 13000.
+      # 5000 transactions should create around 1000 cars per worker but not guaranteed
+      # so need to set asset limits to less than 1000 for the other tests
+      txNumber: 1000
+      rateControl:
+          type: fixed-rate
+          opts:
+            tps: 300
+      workload:
+        module: benchmarks/samples/fabric/fabcar/createCar13000.js
+    - label: Create a car with payload 16000.
+      # 5000 transactions should create around 1000 cars per worker but not guaranteed
+      # so need to set asset limits to less than 1000 for the other tests
+      txNumber: 1000
+      rateControl:
+          type: fixed-rate
+          opts:
+            tps: 300
+      workload:
+        module: benchmarks/samples/fabric/fabcar/createCar16000.js
+    - label: Create a car with payload 19000.
+      # 5000 transactions should create around 1000 cars per worker but not guaranteed
+      # so need to set asset limits to less than 1000 for the other tests
+      txNumber: 1000
+      rateControl:
+          type: fixed-rate
+          opts:
+            tps: 300
+      workload:
+        module: benchmarks/samples/fabric/fabcar/createCar19000.js
 
 
     - label: Change car owner.
@@ -114,6 +134,37 @@ test:
         module: benchmarks/samples/fabric/fabcar/changeCarOwner10000.js
         arguments:
           assets: 500
+    - label: Change car owner with payload 13000.
+      txNumber: 1000
+      rateControl:
+          type: fixed-rate
+          opts:
+            tps: 300
+      workload:
+        module: benchmarks/samples/fabric/fabcar/changeCarOwner13000.js
+        arguments:
+          assets: 500
+    - label: Change car owner with payload 16000.
+      txNumber: 1000
+      rateControl:
+          type: fixed-rate
+          opts:
+            tps: 300
+      workload:
+        module: benchmarks/samples/fabric/fabcar/changeCarOwner16000.js
+        arguments:
+          assets: 500
+    - label: Change car owner with payload 19000.
+      txNumber: 1000
+      rateControl:
+          type: fixed-rate
+          opts:
+            tps: 300
+      workload:
+        module: benchmarks/samples/fabric/fabcar/changeCarOwner19000.js
+        arguments:
+          assets: 500
+
 
     - label: Query all cars.
       txDuration: 10
