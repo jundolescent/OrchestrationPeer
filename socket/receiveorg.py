@@ -3,9 +3,9 @@ import os
 import sys
 
 CHUNKSIZE = 1_000_000
-
+save_path = './OrchestrationPeer/client'
 # Make a directory for the received files.
-os.makedirs('client',exist_ok=True)
+os.makedirs(save_path,exist_ok=True)
 
 ip = sys.argv[1]
 port = int(sys.argv[2])
@@ -18,9 +18,9 @@ with sock,sock.makefile('rb') as clientfile:
 
         filename = raw.strip().decode()
         length = int(clientfile.readline())
-        print(f'Downloading {filename}...\n  Expecting {length:,} bytes...',end='',flush=True)
+        #print(f'Downloading {filename}...\n  Expecting {length:,} bytes...',end='',flush=True)
 
-        path = os.path.join('client',filename)
+        path = os.path.join(save_path,filename)
         os.makedirs(os.path.dirname(path),exist_ok=True)
 
         # Read the data in chunks so it can handle large files.
